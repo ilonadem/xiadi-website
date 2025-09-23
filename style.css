@@ -1,0 +1,187 @@
+/* ==============
+   Global tokens
+   ============== */
+   :root {
+    --maxw: 780px;
+    --pad: 20px;
+    --muted: #666;
+    --fg: #111;
+    --bg: #fff;
+    --link: #556B2F;        /* olive */
+    --link-hover: #3f521f;  /* darker olive on hover */
+    --link-visited: #495c28;/* subtle visited */
+  }
+  
+  /* =========
+     Base type
+     ========= */
+  * { box-sizing: border-box; }
+  
+  html { font-size: 15.5px; }          /* slightly smaller base */
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    /* If you add EB Garamond in <head>, it will be used first. */
+    font-family: "EB Garamond", Garamond, "Apple Garamond",
+                 "Adobe Garamond Pro", "Garamond Premier Pro",
+                 "Times New Roman", serif;
+    line-height: 1.6;
+  }
+  
+  a, a:link    { color: var(--link); text-decoration: none; }
+  a:visited    { color: var(--link-visited); }
+  a:hover      { color: var(--link-hover); text-decoration: underline; text-underline-offset: 3px; }
+  a:active     { color: var(--link-hover); }
+  
+  h1, h2, h3 { line-height: 1.25; margin: 0.6em 0 0.4em; }
+  h1 { font-size: 1.9rem; }            /* ~29.5px at 15.5 base */
+  h2 { font-size: 1.35rem; }
+  
+  ul.clean { list-style: none; padding-left: 0; }
+  ul.clean li { margin: 8px 0; }
+  .time { color: var(--muted); margin-left: 8px; font-variant-numeric: tabular-nums; }
+  
+  /* Legacy hero block (if you ever use it on a page) */
+  .hero {
+    display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center;
+  }
+  .hero img {
+    width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 1px solid #eee;
+  }
+  .cta { display: inline-block; margin-top: 16px; padding: 10px 14px; border: 1px solid #ddd; border-radius: 10px; }
+  
+  /* ======
+     Header
+     ====== */
+  header.site {
+    position: sticky; top: 0; backdrop-filter: blur(6px);
+    background: rgba(255,255,255,.8); border-bottom: 1px solid #eee;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: var(--maxw); margin: 0 auto; padding: 12px var(--pad);
+  }
+  .brand { font-weight: 700; letter-spacing: .2px; color: inherit; }
+  .links a { margin-left: 16px; color: inherit; }
+  .links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
+  
+  main  { max-width: var(--maxw); margin: 0 auto; padding: 32px var(--pad) 64px; }
+  footer{ max-width: var(--maxw); margin: 0 auto; padding: 32px var(--pad); color: var(--muted); border-top: 1px solid #eee; }
+  .lead { color: var(--muted); }
+  
+  /* =========================
+     Sidebar + two-column pages
+     ========================= */
+  .with-sidebar header.site { display: none; } /* hide top nav when sidebar is present */
+  
+  .landing,
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    column-gap: 64px;
+    align-items: start;
+  }
+  
+  /* Sidebar */
+  .sidebar .name { font-weight: 600; font-size: 28px; line-height: 1.1; margin: 0 0 28px; }
+  .menu-vertical { display: flex; flex-direction: column; gap: 20px; font-size: 20px; line-height: 1.2; }
+  .menu-vertical a { color: inherit; text-decoration: none; }
+  .menu-vertical a:hover,
+  .menu-vertical a[aria-current="page"] { text-decoration: underline; text-underline-offset: 3px; }
+  
+  /* Make the name look like text (always black) */
+  .sidebar .name a,
+  .sidebar .name a:link,
+  .sidebar .name a:visited,
+  .sidebar .name a:hover,
+  .sidebar .name a:active { color: #111 !important; text-decoration: none; }
+  .sidebar .name a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  
+  /* Landing right side: full-width image */
+  .visual img { width: 100%; height: auto; display: block; border: none; margin-top: 4px; }
+  
+  /* Content column for non-landing pages */
+  .page .content { max-width: 780px; }
+  
+  /* Footer width when using sidebar */
+  .with-sidebar footer { max-width: 1200px; margin: 0 auto; padding: 32px 48px 48px; }
+  
+  /* ========
+     Responsiveness
+     ======== */
+  @media (max-width: 900px) {
+    .landing, .page {
+      grid-template-columns: 1fr;
+      row-gap: 28px;
+      padding: 24px 20px 56px;
+    }
+    .sidebar { order: 1; }
+    .visual, .content { order: 2; }
+    .sidebar .name { font-size: 24px; margin-bottom: 16px; }
+    .menu-vertical { font-size: 18px; gap: 14px; }
+  }
+  
+  /* Hide top nav on landing specifically (kept for clarity) */
+  .home header.site { display: none; }
+  
+  /* Small image/hero tweak on very small screens */
+  @media (max-width: 640px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero img { width: 100%; height: auto; }
+  }
+
+  /* --- Contact form styling --- */
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  max-width: 520px;
+}
+
+.contact-form label {
+  font-size: 0.95rem;
+  color: var(--fg);
+}
+
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font: inherit;
+  line-height: 1.5;
+  background: #fff;
+}
+
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--link);
+  box-shadow: 0 0 0 2px rgba(85,107,47,0.15);
+}
+
+.contact-form .hp { display: none; } /* honeypot */
+
+.contact-form button {
+  width: fit-content;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.contact-form button:hover {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+.form-note { color: var(--muted); margin-top: 6px; font-size: 0.9rem; }
+.form-status { margin-top: 6px; }

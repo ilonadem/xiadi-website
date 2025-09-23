@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Xiadi Zhai — Contact</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <meta name="description" content="Contact Xiadi Zhai." />
+</head>
+<body class="with-sidebar">
+  <main class="page">
+    <aside class="sidebar">
+      <h1 class="name"><a href="index.html">Xiadi Zhai</a></h1>
+      <nav class="menu-vertical">
+        <a href="about.html">About</a>
+        <a href="writing.html">Writing</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+    </aside>
+
+    <section class="content">
+      <h1>Contact</h1>
+      <p class="lead">Send a note—</p>
+
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/mgvnekdw" method="POST" novalidate>
+        <!-- required email -->
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@example.com" />
+
+        <!-- message -->
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required placeholder="Write your message…"></textarea>
+
+        <!-- optional subject (you can remove this if you like) -->
+        <input type="hidden" name="_subject" value="New message from xiadizhai.com" />
+
+        <!-- honeypot for spam bots -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp">
+
+        <button type="submit">Send</button>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Xiadi Zhai</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    // Progressive enhancement: AJAX submit for nicer UX
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.textContent = 'Sending…';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.reset();
+          statusEl.textContent = 'Thanks! Your message has been sent.';
+        } else {
+          const json = await res.json().catch(() => ({}));
+          statusEl.textContent = json.errors ? json.errors.map(e => e.message).join(', ') : 'Something went wrong. Please email me directly.';
+        }
+      } catch {
+        statusEl.textContent = 'Network error. Please try again, or email me directly.';
+      }
+    });
+  </script>
+</body>
+</html>

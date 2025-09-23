@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Xiadi Zhai — Home</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <meta name="description" content="Personal website of Xiadi Zhai." />
+</head>
+<!-- note the 'home' class to trigger landing-page styles -->
+<body class="with-sidebar home">
+  <main class="landing">
+    <aside class="sidebar">
+      <h1 class="name"><a href="index.html">Xiadi Zhai</a></h1>
+      <nav class="menu-vertical">
+        <a href="about.html">About</a>
+        <a href="writing.html">Writing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </aside>
+    <section class="visual">
+      <img src="assets/about_image.jpeg" alt="Xiadi Zhai" />
+    </section>
+  </main>
+
+
+  <footer>© <span id="year"></span> Xiadi Zhai</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
