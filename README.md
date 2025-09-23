@@ -1,6 +1,6 @@
-# Personal Site (separate landing & about)
+# Xiadi's Website Site
 
-This is a minimal static site intended for GitHub Pages.
+This is a website designed for Xiadi.
 
 ## Structure
 ```
@@ -19,7 +19,5 @@ This is a minimal static site intended for GitHub Pages.
 ```
 
 ## Deploy
-- For a user site, create a repo named \`yourname.github.io\` and push to \`main\`.
-- For a project site, use a normal repo and set Pages → Deploy from \`/docs\` (move files into \`docs/\`).
 
 © 2025 Xiadi Zhai
