@@ -254,7 +254,7 @@ body.about .about-figure figcaption {
 }
 /* About page: make the photographer's name a bit smaller */
 body.about .about-figure figcaption .credit-name {
-  font-size: calc(1em - 2px); /* 2px smaller than the surrounding caption */
+  font-size: calc(1em - 3px); /* 2px smaller than the surrounding caption */
 }
 /* optional larger sizes if you want:
 body.about .about-figure.md img { max-width: 520px; }
