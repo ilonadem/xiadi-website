@@ -185,3 +185,78 @@
 
 .form-note { color: var(--muted); margin-top: 6px; font-size: 0.9rem; }
 .form-status { margin-top: 6px; }
+
+/* Per-image sizing knobs */
+.figure { margin: 20px auto 28px; }
+.figure img { width: 100%; height: auto; display: block; }
+
+.figure.sm { max-width: 400px; }   /* small */
+.figure.md { max-height: 250px; }   /* medium */
+.figure.lg { max-width: 780px; }   /* large (content width) */
+
+.figure figcaption { text-align: center; color: var(--muted); font-size: 0.95rem; margin-top: 6px; }
+
+/* Writing page: image left, caption on the right, no italics */
+body.writing .content .figure{
+  display: grid;
+  grid-template-columns: auto 1fr;    /* image keeps its own width */
+  column-gap: 16px;
+  align-items: end;                   /* align caption bottom with image */
+  margin: 20px 0 28px;                /* no auto-centering */
+}
+
+body.writing .content .figure img{
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* size presets — control the IMAGE width */
+body.writing .content .figure.sm img{ max-width: 360px; }
+body.writing .content .figure.md img{ max-width: 520px; }
+body.writing .content .figure.lg img{ max-width: 700px; }  /* up to your content width */
+
+/* caption: right side, not italic */
+body.writing .content .figure figcaption{
+  justify-self: end;
+  text-align: right;
+  font-style: normal;                 /* <- not italic */
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Safety: remove any accidental height caps/centering from earlier rules */
+body.writing .content .figure{ max-height: none; }
+
+/* About page: image left, one-line caption on the right */
+body.about .about-figure {
+  display: grid;
+  grid-template-columns: auto max-content; /* image width + caption */
+  column-gap: 16px;
+  align-items: end;
+  margin: 16px 0 24px;
+}
+
+body.about .about-figure img {
+  display: block;
+  height: auto;
+  max-width: 360px; /* tweak size here (sm) */
+}
+
+body.about .about-figure figcaption {
+  white-space: nowrap; /* single line */
+  text-align: left;
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+/* About page: make the photographer's name a bit smaller */
+body.about .about-figure figcaption .credit-name {
+  font-size: calc(1em - 2px); /* 2px smaller than the surrounding caption */
+}
+/* optional larger sizes if you want:
+body.about .about-figure.md img { max-width: 520px; }
+body.about .about-figure.lg img { max-width: 700px; }
+*/

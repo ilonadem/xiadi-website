@@ -49,14 +49,26 @@
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
   <script>
-    // Progressive enhancement: AJAX submit for nicer UX
     const form = document.getElementById('contact-form');
     const statusEl = document.getElementById('form-status');
-
+    const submitBtn = form.querySelector('button[type="submit"]');
+  
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+  
+      // Trim values and sync them back to inputs for accurate validation
+      form.email.value = form.email.value.trim();
+      form.message.value = form.message.value.trim();
+  
+      // Block submit if invalid (empty, bad email, etc.)
+      if (!form.checkValidity()) {
+        form.reportValidity();           // show native messages
+        return;
+      }
+  
       statusEl.textContent = 'Sending…';
-
+      submitBtn.disabled = true;
+  
       try {
         const data = new FormData(form);
         const res = await fetch(form.action, {
@@ -64,16 +76,20 @@
           body: data,
           headers: { 'Accept': 'application/json' }
         });
-
+  
         if (res.ok) {
           form.reset();
           statusEl.textContent = 'Thanks! Your message has been sent.';
         } else {
           const json = await res.json().catch(() => ({}));
-          statusEl.textContent = json.errors ? json.errors.map(e => e.message).join(', ') : 'Something went wrong. Please email me directly.';
+          statusEl.textContent = json.errors
+            ? json.errors.map(e => e.message).join(', ')
+            : 'Something went wrong. Please email me directly.';
         }
       } catch {
         statusEl.textContent = 'Network error. Please try again, or email me directly.';
+      } finally {
+        submitBtn.disabled = false;
       }
     });
   </script>
