@@ -260,3 +260,27 @@ body.about .about-figure figcaption .credit-name {
 body.about .about-figure.md img { max-width: 520px; }
 body.about .about-figure.lg img { max-width: 700px; }
 */
+
+/* Mobile: stack About photo + caption; let caption wrap */
+@media (max-width: 640px){
+  /* make the page single-column (you already have a general rule; this is just safe) */
+  .landing, .page { grid-template-columns: 1fr; padding: 24px 16px 56px; }
+
+  body.about .about-figure{
+    grid-template-columns: 1fr;   /* image on top, caption below */
+    row-gap: 6px;
+    align-items: start;
+  }
+  body.about .about-figure img{
+    max-width: 100%;
+    height: auto;
+  }
+  body.about .about-figure figcaption{
+    white-space: normal;          /* allow wrapping on small screens */
+    text-align: left;
+  }
+
+  /* optional: tighten the sidebar text on phones */
+  .sidebar .name { font-size: 22px; }
+  .menu-vertical { font-size: 16px; gap: 12px; }
+}
