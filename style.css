@@ -229,37 +229,33 @@ body.writing .content .figure figcaption{
 /* Safety: remove any accidental height caps/centering from earlier rules */
 body.writing .content .figure{ max-height: none; }
 
-/* About page: image left, one-line caption on the right */
+/* About page: centered image with centered caption underneath */
 body.about .about-figure {
-  display: grid;
-  grid-template-columns: auto max-content; /* image width + caption */
-  column-gap: 16px;
-  align-items: end;
-  margin: 16px 0 24px;
+  display: block;                /* no grid */
+  /* margin:20px auto 20px;        center the whole figure */
+  text-align: center;            /* center caption by default */
 }
 
 body.about .about-figure img {
   display: block;
+  width: 100%;
   height: auto;
-  max-width: 360px; /* tweak size here (sm) */
+  max-width: 360px;              /* tweak size (your "sm") */
+  margin: 0 auto;                /* center the image */
 }
 
 body.about .about-figure figcaption {
-  white-space: nowrap; /* single line */
-  text-align: left;
-  font-style: normal;
+  margin-top: 6px;
   color: var(--muted);
+  font-style: normal;
+  white-space: normal;           /* allow wrapping */
+  text-align: center;            /* ensure centered caption */
   font-size: 0.95rem;
-  margin: 0;
 }
-/* About page: make the photographer's name a bit smaller */
-body.about .about-figure figcaption .credit-name {
-  font-size: calc(1em - 3px); /* 2px smaller than the surrounding caption */
-}
-/* optional larger sizes if you want:
+
+/* optional size presets */
 body.about .about-figure.md img { max-width: 520px; }
 body.about .about-figure.lg img { max-width: 700px; }
-*/
 
 /* Mobile: stack About photo + caption; let caption wrap */
 @media (max-width: 640px){
