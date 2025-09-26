@@ -229,31 +229,31 @@ body.writing .content .figure figcaption{
 /* Safety: remove any accidental height caps/centering from earlier rules */
 body.writing .content .figure{ max-height: none; }
 
-/* About page: centered image with centered caption underneath */
+/* About page: flush-left image with left-aligned caption underneath */
 body.about .about-figure {
-  display: block;                /* no grid */
-  /* margin:20px auto 20px;        center the whole figure */
-  text-align: center;            /* center caption by default */
+  display: block;           /* no grid */
+  margin: 16px 0 24px;      /* no auto-centering */
+  text-align: left;
 }
 
 body.about .about-figure img {
   display: block;
   width: 100%;
+  max-width: 360px;         /* "sm" width cap */
   height: auto;
-  max-width: 360px;              /* tweak size (your "sm") */
-  margin: 0 auto;                /* center the image */
+  margin: 0;                /* keep flush-left */
 }
 
 body.about .about-figure figcaption {
   margin-top: 6px;
   color: var(--muted);
   font-style: normal;
-  white-space: normal;           /* allow wrapping */
-  text-align: center;            /* ensure centered caption */
+  white-space: normal;      /* allow wrapping */
+  text-align: left;
   font-size: 0.95rem;
 }
 
-/* optional size presets */
+/* optional larger presets */
 body.about .about-figure.md img { max-width: 520px; }
 body.about .about-figure.lg img { max-width: 700px; }
 
