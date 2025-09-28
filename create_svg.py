@@ -12,6 +12,12 @@ cairosvg.svg2png(url="assets/beetle.svg",
                  output_width=16, output_height=16,
                  background_color="transparent")
 
+# 48×48
+cairosvg.svg2png(url="assets/beetle.svg",
+                 write_to="assets/beetle-48.png",
+                 output_width=48, output_height=48,
+                 background_color="transparent")
+
 # 180×180 (Apple touch icon)
 cairosvg.svg2png(url="assets/beetle.svg",
                  write_to="assets/beetle-apple-touch-icon.png",
